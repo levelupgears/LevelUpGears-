@@ -3,64 +3,103 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>South Indian Jewellery Set | LevelUpGears</title>
-<meta name="description" content="South Indian gold plated matte jewellery set with cubic zirconia stones. Adjustable size.">
+<title>LevelUpGears | South Indian Jewellery</title>
+<meta name="description" content="Buy South Indian jewellery sets online. Order easily on WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f7f9fa;--card:#fff;--ink:#12232e;--mute:#5d6f7a;--line:#dbe4e8;--brand:#0f766e;--pop:#ffd23f}
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
 body{font:16px/1.6 'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink)}
-h1,h2,.logo{font-family:'Bricolage Grotesque',sans-serif}
+h1,h2,h3,.logo{font-family:'Bricolage Grotesque',sans-serif}
 button{font:inherit;cursor:pointer;border:0}
+a{color:inherit}
 :focus-visible{outline:3px solid var(--pop);outline-offset:2px}
+.hide{display:none!important}
 header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
 .bar{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
-.logo{font-size:1.4rem;font-weight:800}
+.logo{font-size:1.4rem;font-weight:800;text-decoration:none}
 .cartbtn{background:var(--ink);color:#fff;padding:9px 16px;border-radius:999px;font-weight:700}
-.wrap{max-width:1100px;margin:auto;padding:20px 16px 60px;display:grid;gap:28px}
-@media(min-width:850px){.wrap{grid-template-columns:1.1fr 1fr;gap:48px;padding-top:36px;align-items:start}.gallery{position:sticky;top:84px}}
-.main{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;aspect-ratio:1;display:grid;place-items:center}
+.page{max-width:1100px;margin:auto;padding:0 16px 60px}
+
+/* home */
+.hero{padding:18px 0 4px}
+.hero h1{font-size:clamp(1.4rem,4.5vw,2rem);line-height:1.15;font-weight:800}
+.hero p{color:var(--mute);margin-top:4px;font-size:.95rem;max-width:60ch}
+.sec{display:flex;align-items:baseline;justify-content:space-between;margin:14px 0 10px}
+.sec h2{font-size:1.15rem}
+.sec span{color:var(--mute);font-size:.95rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;text-align:left;padding:0;color:inherit}
+.card:hover{border-color:var(--brand)}
+.card .im{aspect-ratio:1;overflow:hidden;background:var(--line)}
+.card img{width:100%;height:100%;object-fit:cover;display:block}
+.card .in{padding:10px 12px 12px;display:flex;flex-direction:column;gap:1px}
+.card h3{font-size:.95rem;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card small{color:var(--mute);font-size:.8rem;line-height:1.3}
+.card .pr{font-weight:700;font-size:1.05rem;margin-top:4px}
+.card .more{margin-top:4px;color:var(--brand);font-weight:700;font-size:.85rem}
+
+.nav{background:var(--card);border-bottom:1px solid var(--line)}
+.nav div{max-width:1100px;margin:auto;display:flex;gap:8px;overflow-x:auto;padding:10px 16px}
+.nav a{white-space:nowrap;text-decoration:none;padding:7px 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font-weight:500}
+.nav a.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+@media(min-width:700px){.cats{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}}
+.cat{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:16/10;display:block;text-decoration:none;color:#fff;background:var(--ink)}
+.cat img{width:100%;height:100%;object-fit:cover;display:block;opacity:.9}
+.cat b{position:absolute;left:0;right:0;bottom:0;padding:24px 12px 10px;background:linear-gradient(transparent,#000b);font-family:'Bricolage Grotesque',sans-serif;font-size:1.05rem;line-height:1.2}
+.cat b small{display:block;font:400 .85rem 'DM Sans',sans-serif;opacity:.9}
+.lt{padding:16px 0 4px}.lt h1{font-size:clamp(1.8rem,5vw,2.4rem);font-weight:800}.lt p{color:var(--mute)}
+.pill{display:inline-block;margin-top:14px;background:var(--ink);color:#fff;padding:12px 22px;border-radius:999px;font-weight:700;text-decoration:none}
+/* detail */
+.back{background:none;color:var(--brand);font-weight:700;padding:16px 0 8px}
+.det{display:grid;gap:28px}
+@media(min-width:850px){.det{grid-template-columns:1.1fr 1fr;gap:48px;align-items:start}.gal{position:sticky;top:84px}}
+.main{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;aspect-ratio:1}
 .main img{width:100%;height:100%;object-fit:cover;display:block}
 .thumbs{display:flex;gap:10px;margin-top:12px}
 .thumbs button{flex:1;max-width:96px;aspect-ratio:1;padding:0;border-radius:12px;overflow:hidden;border:2px solid var(--line);background:var(--card)}
 .thumbs button.on{border-color:var(--brand)}
 .thumbs img{width:100%;height:100%;object-fit:cover;display:block}
 .tag{display:inline-block;background:#e3f4f1;color:var(--brand);font-weight:700;font-size:.85rem;padding:3px 12px;border-radius:999px}
-h1{font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.1;font-weight:800;margin:10px 0}
-.price{font-size:2rem;font-weight:700;margin:6px 0}
+.det h1{font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.1;font-weight:800;margin:10px 0}
+.price{font-size:2rem;font-weight:700}
 .price small{font-size:.95rem;color:var(--mute);font-weight:400}
-.lead{color:var(--mute);max-width:52ch}
+.lead{color:var(--mute);max-width:52ch;margin-top:6px}
 .qtyrow{display:flex;align-items:center;gap:14px;margin:20px 0 12px}
-.qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:12px;background:var(--card)}
 .qty button{width:42px;height:44px;background:none;color:var(--ink);font-size:1.3rem}
 .qty span{min-width:30px;text-align:center;font-weight:700}
 .btns{display:grid;gap:10px}
 @media(min-width:500px){.btns{grid-template-columns:1fr 1fr}}
 .add{background:var(--pop);color:#12232e;padding:15px;border-radius:12px;font-weight:700}
 .buy{background:#25d366;color:#06361a;padding:15px;border-radius:12px;font-weight:700}
-h2{font-size:1.3rem;margin:28px 0 10px}
+.det h2{font-size:1.3rem;margin:28px 0 10px}
 table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
 td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
 tr:last-child td{border-bottom:0}
 td:first-child{color:var(--mute);width:42%}
 td:last-child{font-weight:500}
+
 .chat{position:fixed;right:16px;bottom:16px;z-index:7;background:#25d366;color:#06361a;border-radius:999px;padding:12px 18px;font-weight:700;display:flex;align-items:center;gap:8px;text-decoration:none;box-shadow:0 4px 14px #0003}
 .chat svg{width:22px;height:22px;fill:currentColor}
 footer{text-align:center;color:var(--mute);padding:24px 16px 90px;border-top:1px solid var(--line);font-size:.9rem}
+
+/* cart */
 #shade{position:fixed;inset:0;background:#0007;display:none;z-index:9}
 #drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--card);z-index:10;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column}
 body.open #drawer{transform:none}body.open #shade{display:block}
 @media(prefers-reduced-motion:reduce){#drawer{transition:none}}
 .dh{display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:1px solid var(--line)}
-.dh h2{margin:0}
+.dh h2{font-size:1.3rem}
 .x{background:none;color:var(--ink);font-size:1.8rem}
 #items{flex:1;overflow:auto;padding:8px 16px}
 .row{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);align-items:center}
 .row img{width:64px;height:64px;border-radius:10px;object-fit:cover}
 .row .t{flex:1}
-.row .qty{display:inline-flex;margin-top:4px}
+.row .qty{margin-top:4px}
 .row .qty button{width:32px;height:32px;font-size:1.1rem}
 .empty{text-align:center;color:var(--mute);padding:40px 0}
 .df{padding:16px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
@@ -73,35 +112,56 @@ body.open #drawer{transform:none}body.open #shade{display:block}
 
 <header>
   <div class="bar">
-    <div class="logo" id="storeName"></div>
+    <a class="logo" id="storeName" href="#"></a>
     <button class="cartbtn" id="openCart">Cart (<span id="count">0</span>)</button>
   </div>
 </header>
 
-<main class="wrap">
-  <section class="gallery" aria-label="Product photos">
-    <div class="main"><img id="mainImg" alt="South Indian jewellery set"></div>
-    <div class="thumbs" id="thumbs"></div>
+<nav class="nav" aria-label="Shop menu"><div id="menu"></div></nav>
+
+<!-- HOME -->
+<main class="page" id="home">
+  <section class="hero">
+    <h1 id="tagline"></h1>
+    <p id="sub"></p>
   </section>
+  <div class="sec"><h2>Shop by category</h2></div>
+  <div class="cats" id="cats"></div>
+  <div class="sec" style="margin-top:20px"><h2>Featured products</h2><a href="#all" style="color:var(--brand);font-weight:700">See all</a></div>
+  <div class="grid" id="featured"></div>
+</main>
 
-  <section>
-    <span class="tag">Jewellery set</span>
-    <h1 id="pname"></h1>
-    <div class="price" id="pprice"></div>
-    <p class="lead" id="pdesc"></p>
+<!-- PRODUCT LIST: all products or one category -->
+<main class="page hide" id="list">
+  <div class="lt"><h1 id="ltitle"></h1><p id="lsub"></p></div>
+  <div class="grid" id="grid" style="margin-top:18px"></div>
+</main>
 
-    <div class="qtyrow">
-      <span>Quantity</span>
-      <div class="qty"><button id="qm" aria-label="Decrease quantity">&minus;</button><span id="q">1</span><button id="qp" aria-label="Increase quantity">+</button></div>
-    </div>
-    <div class="btns">
-      <button class="add" id="addBtn">Add to cart</button>
-      <button class="buy" id="buyBtn">Buy on WhatsApp</button>
-    </div>
-
-    <h2>Product details</h2>
-    <table id="specs"></table>
-  </section>
+<!-- PRODUCT PAGE: opens when a product is tapped -->
+<main class="page hide" id="detail">
+  <button class="back" id="back">&larr; Back to all products</button>
+  <div class="det">
+    <section class="gal" aria-label="Product photos">
+      <div class="main"><img id="mainImg" alt=""></div>
+      <div class="thumbs" id="thumbs"></div>
+    </section>
+    <section>
+      <span class="tag" id="dcat"></span>
+      <h1 id="dname"></h1>
+      <div class="price" id="dprice"></div>
+      <p class="lead" id="ddesc"></p>
+      <div class="qtyrow">
+        <span>Quantity</span>
+        <div class="qty"><button id="qm" aria-label="Decrease quantity">&minus;</button><span id="q">1</span><button id="qp" aria-label="Increase quantity">+</button></div>
+      </div>
+      <div class="btns">
+        <button class="add" id="addBtn">Add to cart</button>
+        <button class="buy" id="buyBtn">Buy on WhatsApp</button>
+      </div>
+      <h2>Product details</h2>
+      <table id="specs"></table>
+    </section>
+  </div>
 </main>
 
 <footer id="foot"></footer>
@@ -122,90 +182,190 @@ body.open #drawer{transform:none}body.open #shade{display:block}
 </aside>
 
 <script>
-/* ============ EDIT YOUR STORE SETTINGS HERE ============ */
+/* ============ 1. STORE SETTINGS ============ */
 const CONFIG = {
   storeName: "LevelUpGears",
+  tagline: "South Indian jewellery, ready to wear.",
+  subtitle: "Tap any product to see big photos and full details. Order in one tap on WhatsApp.",
   currency: "₹",
   whatsapp: "918178794495",
   footer: "© 2026 LevelUpGears. All rights reserved."
 };
 
-/* ============ EDIT YOUR PRODUCT HERE ============ */
-const PRODUCT = {
-  id: "sij1",
-  name: "South Indian Jewellery Set",
-  price: 320,
-  desc: "Traditional South Indian choker necklace with matching earrings. Gold plated matte finish with sparkling stones, ideal for weddings, festivals and special occasions. Best quality.",
-  images: ["choker-set-3.jpg", "choker-set-1.jpg", "choker-set-2.jpg", "earrings-1.jpg"],
-  specs: [
-    ["Name", "South Indian Jewellery Set"],
-    ["Base Metal", "Alloy"],
-    ["Plating", "Gold Plated - Matte"],
-    ["Stone Type", "Cubic Zirconia / American Diamond"],
-    ["Sizing", "Adjustable"],
-    ["Type", "As per image"],
-    ["Net Quantity", "1 set (necklace + earrings)"],
-    ["Quality", "Best quality"],
-    ["Country of Origin", "India"]
-  ]
-};
-/* ================================================ */
+/* ============ 2. CATEGORIES ============
+   To add a category: copy one line. "id" = small letters/numbers/hyphens.
+   "image" = a photo from your repository. */
+const CATEGORIES = [
+  {id:"necklace-sets", name:"Necklace Sets", image:"choker-set-1.jpg"}
+];
+
+/* ============ 3. YOUR PRODUCTS ============
+   To add a product: copy one block (from { to },) and change it.
+   "id" must be unique: only small letters, numbers and hyphens. */
+const PRODUCTS = [
+  {
+    id: "south-indian-set",
+    name: "South Indian Jewellery Set",
+    category: "necklace-sets",
+    price: 320,
+    short: "Gold plated matte choker with earrings",
+    desc: "Traditional South Indian choker necklace with matching earrings. Gold plated matte finish with sparkling stones, ideal for weddings, festivals and special occasions. Best quality.",
+    images: ["choker-set-3.jpg", "choker-set-1.jpg", "choker-set-2.jpg", "earrings-1.jpg"],
+    specs: [
+      ["Name", "South Indian Jewellery Set"],
+      ["Base Metal", "Alloy"],
+      ["Plating", "Gold Plated - Matte"],
+      ["Stone Type", "Cubic Zirconia / American Diamond"],
+      ["Sizing", "Adjustable"],
+      ["Type", "As per image"],
+      ["Net Quantity", "1 set (necklace + earrings)"],
+      ["Quality", "Best quality"],
+      ["Country of Origin", "India"]
+    ]
+  },
+  {
+    id: "matte-temple-set",
+    name: "Matte Finished Choker Necklace Temple Jewellery Set for Women Girls",
+    category: "necklace-sets",
+    price: 325,
+    short: "Lakshmi temple choker with earrings",
+    desc: "Matte finished Lakshmi temple style choker necklace with matching earrings. Gold plated with sparkling stones and pearl drops, with an adjustable thread closure. Best quality, perfect for weddings and festivals.",
+    images: ["temple-set-1.jpg", "temple-set-2.jpg", "temple-set-3.jpg"],
+    specs: [
+      ["Name", "Matte Finished Choker Necklace Temple Jewellery Set for Women Girls"],
+      ["Base Metal", "Alloy"],
+      ["Plating", "Gold Plated - Matte"],
+      ["Stone Type", "Cubic Zirconia"],
+      ["Sizing", "Adjustable"],
+      ["Type", "As per image"],
+      ["Net Quantity", "1 set (necklace + earrings)"],
+      ["Quality", "Best quality"],
+      ["Country of Origin", "India"]
+    ]
+  }
+];
+/* ========================================== */
 
 const $ = id => document.getElementById(id);
 const money = n => CONFIG.currency + Math.round(n).toLocaleString("en-IN");
-let qty = 1, cart = 0;
-try { cart = +localStorage.getItem("cartQty") || 0; } catch(e) {}
+const find = id => PRODUCTS.find(p => p.id === id);
+const catOf = id => CATEGORIES.find(c => c.id === id) || {id, name:id};
+const inCat = id => PRODUCTS.filter(p => p.category === id);
+let cart = {}, qty = 1, current = null;
+try { cart = JSON.parse(localStorage.getItem("cart2")) || {}; } catch(e) {}
 
-document.title = PRODUCT.name + " | " + CONFIG.storeName;
+document.title = CONFIG.storeName + " | South Indian Jewellery";
 $("storeName").textContent = CONFIG.storeName;
+$("tagline").textContent = CONFIG.tagline;
+$("sub").textContent = CONFIG.subtitle;
 $("foot").textContent = CONFIG.footer;
-$("pname").textContent = PRODUCT.name;
-$("pprice").innerHTML = money(PRODUCT.price) + ' <small>inclusive of all taxes</small>';
-$("pdesc").textContent = PRODUCT.desc;
-$("specs").innerHTML = PRODUCT.specs.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("");
 
+/* ----- cards, categories, menu ----- */
+const card = p => `
+  <button class="card" data-open="${p.id}" aria-label="Open ${p.name}">
+    <div class="im"><img src="${p.images[0]}" alt="${p.name}" loading="lazy"></div>
+    <div class="in">
+      <h3>${p.name}</h3><small>${p.short}</small>
+      <div class="pr">${money(p.price)}</div>
+      <div class="more">View details &rarr;</div>
+    </div>
+  </button>`;
+$("cats").innerHTML = CATEGORIES.map(c => `<a class="cat" href="#c-${c.id}"><img src="${c.image}" alt=""><b>${c.name}<small>${inCat(c.id).length} product${inCat(c.id).length===1?"":"s"}</small></b></a>`).join("");
+$("featured").innerHTML = PRODUCTS.slice(0,4).map(card).join("");
+$("menu").innerHTML = `<a href="#" data-m="">Home</a><a href="#all" data-m="all">All products</a>` + CATEGORIES.map(c => `<a href="#c-${c.id}" data-m="c-${c.id}">${c.name}</a>`).join("");
+document.body.addEventListener("click", e => {
+  const c = e.target.closest("[data-open]");
+  if(c) location.hash = "p-" + c.dataset.open;
+});
+function showList(list, title, sub){
+  $("ltitle").textContent = title; $("lsub").textContent = sub;
+  $("grid").innerHTML = list.length ? list.map(card).join("") : '<p class="empty">No products here yet.</p>';
+}
+
+/* ----- product page ----- */
 function show(i){
-  $("mainImg").src = PRODUCT.images[i];
+  $("mainImg").src = current.images[i];
   document.querySelectorAll(".thumbs button").forEach((b,k) => b.classList.toggle("on", k===i));
 }
-$("thumbs").innerHTML = PRODUCT.images.map((src,i) => `<button data-i="${i}" aria-label="Photo ${i+1}"><img src="${src}" alt=""></button>`).join("");
+function openProduct(p){
+  current = p; qty = 1; $("q").textContent = 1;
+  document.title = p.name + " | " + CONFIG.storeName;
+  $("mainImg").alt = p.name;
+  $("dcat").textContent = p.category;
+  $("dname").textContent = p.name;
+  $("dprice").innerHTML = money(p.price) + ' <small>inclusive of all taxes</small>';
+  $("ddesc").textContent = p.desc;
+  $("specs").innerHTML = p.specs.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("");
+  $("thumbs").innerHTML = p.images.map((s,i) => `<button data-i="${i}" aria-label="Photo ${i+1}"><img src="${s}" alt=""></button>`).join("");
+  show(0);
+  $("detail").classList.remove("hide");
+}
 $("thumbs").addEventListener("click", e => { const b = e.target.closest("button"); if(b) show(+b.dataset.i); });
-show(0);
-
+$("back").onclick = () => { location.hash = current ? "c-" + current.category : ""; };
 $("qm").onclick = () => { qty = Math.max(1, qty-1); $("q").textContent = qty; };
 $("qp").onclick = () => { qty = Math.min(20, qty+1); $("q").textContent = qty; };
 
-function renderCart(){
-  $("count").textContent = cart;
-  $("total").textContent = money(cart * PRODUCT.price);
-  $("items").innerHTML = cart ? `<div class="row"><img src="${PRODUCT.images[0]}" alt=""><div class="t"><b>${PRODUCT.name}</b>${money(PRODUCT.price)}
-    <div><div class="qty"><button id="cm" aria-label="Decrease">&minus;</button><span>${cart}</span><button id="cp" aria-label="Increase">+</button></div></div></div>
-    <b>${money(cart*PRODUCT.price)}</b></div>` : `<p class="empty">Your cart is empty. Add the set to start.</p>`;
-  try { localStorage.setItem("cartQty", cart); } catch(e) {}
+function route(){
+  const h = location.hash.slice(1);
+  const p = h.startsWith("p-") ? find(h.slice(2)) : null;
+  const cat = h.startsWith("c-") ? CATEGORIES.find(c => c.id === h.slice(2)) : null;
+  ["home","list","detail"].forEach(v => $(v).classList.add("hide"));
+  current = null;
+  document.title = CONFIG.storeName + " | South Indian Jewellery";
+  let on = "";
+  if(p){ openProduct(p); on = "c-" + p.category; }
+  else if(cat){ showList(inCat(cat.id), cat.name, inCat(cat.id).length + " product" + (inCat(cat.id).length===1?"":"s")); $("list").classList.remove("hide"); on = "c-" + cat.id; }
+  else if(h === "all"){ showList(PRODUCTS, "All products", PRODUCTS.length + " product" + (PRODUCTS.length===1?"":"s")); $("list").classList.remove("hide"); on = "all"; }
+  else $("home").classList.remove("hide");
+  document.querySelectorAll("#menu a").forEach(a => a.classList.toggle("on", a.dataset.m === on));
+  window.scrollTo(0, 0);
 }
-function openCart(){ document.body.classList.add("open"); }
-function closeCart(){ document.body.classList.remove("open"); }
+window.addEventListener("hashchange", route);
 
-$("addBtn").onclick = () => { cart = Math.min(20, cart + qty); renderCart(); $("addBtn").textContent = "Added to cart"; setTimeout(()=>$("addBtn").textContent="Add to cart", 1000); };
-$("buyBtn").onclick = () => { cart = qty; renderCart(); openCart(); };
+/* ----- cart ----- */
+function renderCart(){
+  const ids = Object.keys(cart).filter(id => find(id));
+  let total = 0, count = 0;
+  $("items").innerHTML = ids.length ? ids.map(id => {
+    const p = find(id), n = cart[id]; total += p.price*n; count += n;
+    return `<div class="row"><img src="${p.images[0]}" alt=""><div class="t"><b>${p.name}</b>${money(p.price)}
+      <div><div class="qty"><button data-dec="${id}" aria-label="Remove one">&minus;</button><span>${n}</span><button data-inc="${id}" aria-label="Add one">+</button></div></div></div>
+      <b>${money(p.price*n)}</b></div>`;
+  }).join("") : `<p class="empty">Your cart is empty. Open a product and tap Add to cart.</p>`;
+  $("total").textContent = money(total);
+  $("count").textContent = count;
+  try { localStorage.setItem("cart2", JSON.stringify(cart)); } catch(e) {}
+}
+function change(id, d){
+  cart[id] = Math.min(20, (cart[id]||0) + d);
+  if(cart[id] <= 0) delete cart[id];
+  renderCart();
+}
+$("items").addEventListener("click", e => {
+  if(e.target.dataset.inc) change(e.target.dataset.inc, 1);
+  if(e.target.dataset.dec) change(e.target.dataset.dec, -1);
+});
+const openCart = () => document.body.classList.add("open");
+const closeCart = () => document.body.classList.remove("open");
 $("openCart").onclick = openCart;
 $("closeCart").onclick = $("shade").onclick = closeCart;
-$("items").addEventListener("click", e => {
-  if(e.target.id==="cp") cart = Math.min(20, cart+1);
-  if(e.target.id==="cm") cart = Math.max(0, cart-1);
-  renderCart();
-});
+
+$("addBtn").onclick = () => { change(current.id, qty); $("addBtn").textContent = "Added to cart"; setTimeout(()=>$("addBtn").textContent="Add to cart", 1000); };
+$("buyBtn").onclick = () => { if(!cart[current.id]) change(current.id, qty); openCart(); };
 
 $("order").onclick = () => {
-  if(!cart){ alert("Your cart is empty."); return; }
+  const ids = Object.keys(cart).filter(id => find(id));
+  if(!ids.length){ alert("Your cart is empty."); return; }
   const name = $("name").value.trim(), phone = $("phone").value.trim(), addr = $("addr").value.trim();
   if(!name || !phone || !addr){ alert("Please fill in your name, phone and address."); return; }
-  const msg = `New order from ${CONFIG.storeName}\n\n• ${cart} x ${PRODUCT.name} - ${money(cart*PRODUCT.price)}\n\nTotal: ${money(cart*PRODUCT.price)}\n\nName: ${name}\nPhone: ${phone}\nAddress: ${addr}`;
+  let total = 0;
+  const lines = ids.map(id => { const p = find(id); total += p.price*cart[id]; return `• ${cart[id]} x ${p.name} - ${money(p.price*cart[id])}`; });
+  const msg = `New order from ${CONFIG.storeName}\n\n${lines.join("\n")}\n\nTotal: ${money(total)}\n\nName: ${name}\nPhone: ${phone}\nAddress: ${addr}`;
   window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
 };
 
-$("chat").href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("Hi, I have a question about the " + PRODUCT.name + ".")}`;
-renderCart();
+$("chat").href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("Hi, I need help with an order.")}`;
+renderCart(); route();
 </script>
 </body>
 </html>
