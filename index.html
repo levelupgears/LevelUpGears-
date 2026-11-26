@@ -291,7 +291,7 @@ const PRODUCTS = [
     price: 188,
     short: "Oxidised gold jhumka combo, 6 pairs",
     desc: "Combo of 6 pairs of traditional oxidised gold jhumka earrings in different designs. Fancy ethnic earrings for daily wear and special occasions.",
-    images: ["jhumka-set-1.jpg", "jhumka-set-2.jpg", "jhumka-set-3.jpg", "jhumka-set-4.jpg"],
+    images: ["jhumka-set-1.jpg", "jhumka-set-3.jpg", "jhumka-set-4.jpg"],
     specs: [
       ["Name", "Gold Plated Fancy Jhumka Earrings for Women - Set of 6 (Pack of 6)"],
       ["Base Metal", "Alloy"],
@@ -440,7 +440,7 @@ function openProduct(p){
   $("dprice").innerHTML = priceHTML(p) + ' <br><small>inclusive of all taxes</small>';
   $("ddesc").textContent = p.desc;
   $("specs").innerHTML = p.specs.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("");
-  $("thumbs").innerHTML = p.images.map((s,i) => `<button data-i="${i}" aria-label="Photo ${i+1}"><img src="${s}" alt=""></button>`).join("");
+  $("thumbs").innerHTML = p.images.map((s,i) => `<button data-i="${i}" aria-label="Photo ${i+1}"><img src="${s}" alt="" onerror="this.closest('button').remove()"></button>`).join("");
   colour = p.colors ? 0 : null;
   $("colrow").classList.toggle("hide", !p.colors);
   if(p.colors) drawColors();
