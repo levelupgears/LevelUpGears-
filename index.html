@@ -435,7 +435,7 @@ function openProduct(p){
   current = p; qty = 1; $("q").textContent = 1;
   document.title = p.name + " | " + CONFIG.storeName;
   $("mainImg").alt = p.name;
-  $("dcat").textContent = p.category;
+  $("dcat").textContent = catOf(p.category).name;
   $("dname").textContent = p.name;
   $("dprice").innerHTML = priceHTML(p) + ' <br><small>inclusive of all taxes</small>';
   $("ddesc").textContent = p.desc;
