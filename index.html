@@ -72,6 +72,16 @@ header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px 
 #colors{display:flex;gap:8px;flex-wrap:wrap}
 #colors button{padding:9px 18px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--ink);font-weight:500}
 #colors button.on{border-color:var(--brand);background:#e3f4f1;color:var(--brand);font-weight:700}
+.was{color:var(--mute);font-weight:400;font-size:.8em}
+.off{display:inline-block;background:#e3f4f1;color:var(--brand);font-size:.7rem;font-weight:700;padding:1px 8px;border-radius:999px;white-space:nowrap;vertical-align:middle}
+.price .off{font-size:.8rem}
+.coupon{border:1.5px dashed var(--brand);background:#e3f4f1;border-radius:12px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.coupon small{display:block;color:var(--mute)}
+.coupon b{color:var(--brand);letter-spacing:.5px}
+.coupon button{background:var(--brand);color:#fff;padding:8px 18px;border-radius:10px;font-weight:700}
+.coupon.on button{background:none;color:var(--ink);text-decoration:underline;padding:8px 4px;font-weight:500}
+.ln{display:flex;justify-content:space-between;color:var(--mute)}
+.cnote{margin-top:10px;color:var(--brand);font-weight:700;font-size:.92rem}
 .qtyrow{display:flex;align-items:center;gap:14px;margin:20px 0 12px}
 .qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:12px;background:var(--card)}
 .qty button{width:42px;height:44px;background:none;color:var(--ink);font-size:1.3rem}
@@ -163,6 +173,7 @@ body.open #drawer{transform:none}body.open #shade{display:block}
         <button class="add" id="addBtn">Add to cart</button>
         <button class="buy" id="buyBtn">Buy on WhatsApp</button>
       </div>
+      <p class="cnote" id="cnote"></p>
       <h2>Product details</h2>
       <table id="specs"></table>
     </section>
@@ -178,6 +189,9 @@ body.open #drawer{transform:none}body.open #shade{display:block}
   <div class="dh"><h2>Your cart</h2><button class="x" id="closeCart" aria-label="Close cart">&times;</button></div>
   <div id="items"></div>
   <div class="df">
+    <div class="coupon" id="coupon"></div>
+    <div class="ln hide" id="subln"><span>Subtotal</span><span id="subtotal"></span></div>
+    <div class="ln hide" id="disln"><span>Coupon discount</span><span id="disc"></span></div>
     <div class="tot"><span>Total</span><span id="total"></span></div>
     <input id="name" placeholder="Your name" autocomplete="name">
     <input id="phone" placeholder="Phone number" autocomplete="tel">
@@ -193,6 +207,8 @@ const CONFIG = {
   tagline: "South Indian jewellery, ready to wear.",
   subtitle: "Tap any product to see big photos and full details. Order in one tap on WhatsApp.",
   currency: "₹",
+  coupon: {code: "LEVELUP10", percent: 10},   // coupon shown in the cart
+  discount: 0,   // % off on every product. 0 = no discount. Customers pay the "price" written on each product below.
   whatsapp: "918178794495",
   footer: "© 2026 LevelUpGears. All rights reserved."
 };
@@ -346,16 +362,39 @@ const PRODUCTS = [
       ["Net Quantity", "1 pair"],
       ["Country of Origin", "India"]
     ]
+  },
+  {
+    id: "huggie-combo",
+    name: "Combo of Huggie Earrings / Studs / Bali for Women & Girls (6 Pairs)",
+    category: "earrings",
+    price: 255,
+    short: "6 different gold plated bali pairs",
+    desc: "Combo of 6 different pairs of gold plated huggie earrings (bali) in unique designs. Small, stylish and easy to wear every day, with a pair for every outfit. Best quality.",
+    images: ["huggie-combo-1.jpg", "huggie-combo-2.jpg", "huggie-combo-3.jpg", "huggie-combo-4.jpg"],
+    specs: [
+      ["Name", "Combo of Huggie Earrings / Studs / Bali for Women & Girls"],
+      ["Base Metal", "Brass"],
+      ["Plating", "Gold Plated"],
+      ["Stone Type", "No Stone"],
+      ["Sizing", "Adjustable"],
+      ["Type", "Huggie Earrings"],
+      ["Net Quantity", "1 combo (6 different pairs)"],
+      ["Country of Origin", "India"]
+    ]
   }
 ];
 /* ========================================== */
 
 const $ = id => document.getElementById(id);
 const money = n => CONFIG.currency + Math.round(n).toLocaleString("en-IN");
+const sale = p => Math.round(p.price * (1 - (CONFIG.discount||0)/100));
+const priceHTML = p => CONFIG.discount ? `${money(sale(p))} <s class="was">${money(p.price)}</s> <span class="off">${CONFIG.discount}% OFF</span>` : money(p.price);
 const find = id => PRODUCTS.find(p => p.id === id);
 const catOf = id => CATEGORIES.find(c => c.id === id) || {id, name:id};
 const inCat = id => PRODUCTS.filter(p => p.category === id);
-let cart = {}, qty = 1, current = null, colour = null;
+let cart = {}, qty = 1, current = null, colour = null, couponOn = false;
+try { couponOn = localStorage.getItem("coupon2") === "1"; } catch(e) {}
+const CP = CONFIG.coupon;
 try { cart = JSON.parse(localStorage.getItem("cart2")) || {}; } catch(e) {}
 
 document.title = CONFIG.storeName + " | South Indian Jewellery";
@@ -363,6 +402,7 @@ $("storeName").textContent = CONFIG.storeName;
 $("tagline").textContent = CONFIG.tagline;
 $("sub").textContent = CONFIG.subtitle;
 $("foot").textContent = CONFIG.footer;
+$("cnote").textContent = "Use coupon " + CP.code + " in your cart for " + CP.percent + "% off";
 
 /* ----- cards, categories, menu ----- */
 const card = p => `
@@ -370,7 +410,7 @@ const card = p => `
     <div class="im"><img src="${p.images[0]}" alt="${p.name}" loading="lazy"></div>
     <div class="in">
       <h3>${p.name}</h3><small>${p.short}</small>
-      <div class="pr">${money(p.price)}</div>
+      <div class="pr">${priceHTML(p)}</div>
       <div class="more">View details &rarr;</div>
     </div>
   </button>`;
@@ -397,7 +437,7 @@ function openProduct(p){
   $("mainImg").alt = p.name;
   $("dcat").textContent = p.category;
   $("dname").textContent = p.name;
-  $("dprice").innerHTML = money(p.price) + ' <small>inclusive of all taxes</small>';
+  $("dprice").innerHTML = priceHTML(p) + ' <br><small>inclusive of all taxes</small>';
   $("ddesc").textContent = p.desc;
   $("specs").innerHTML = p.specs.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("");
   $("thumbs").innerHTML = p.images.map((s,i) => `<button data-i="${i}" aria-label="Photo ${i+1}"><img src="${s}" alt=""></button>`).join("");
@@ -446,15 +486,30 @@ function renderCart(){
   const keys = Object.keys(cart).filter(k => find(pid(k)));
   let total = 0, count = 0;
   $("items").innerHTML = keys.length ? keys.map(k => {
-    const p = find(pid(k)), n = cart[k]; total += p.price*n; count += n;
-    return `<div class="row"><img src="${thumb(k)}" alt=""><div class="t"><b>${label(k)}</b>${money(p.price)}
+    const p = find(pid(k)), n = cart[k]; total += sale(p)*n; count += n;
+    return `<div class="row"><img src="${thumb(k)}" alt=""><div class="t"><b>${label(k)}</b>${money(sale(p))}
       <div><div class="qty"><button data-dec="${k}" aria-label="Remove one">&minus;</button><span>${n}</span><button data-inc="${k}" aria-label="Add one">+</button></div></div></div>
-      <b>${money(p.price*n)}</b></div>`;
+      <b>${money(sale(p)*n)}</b></div>`;
   }).join("") : `<p class="empty">Your cart is empty. Open a product and tap Add to cart.</p>`;
-  $("total").textContent = money(total);
+  const disc = couponOn && count ? Math.round(total * CP.percent / 100) : 0;
+  $("subtotal").textContent = money(total);
+  $("disc").textContent = "-" + money(disc);
+  $("subln").classList.toggle("hide", !disc);
+  $("disln").classList.toggle("hide", !disc);
+  $("total").textContent = money(total - disc);
   $("count").textContent = count;
+  $("coupon").classList.toggle("on", couponOn);
+  $("coupon").innerHTML = couponOn
+    ? `<div><b>${CP.code}</b> applied<small>${CP.percent}% off on your order</small></div><button data-cp="off">Remove</button>`
+    : `<div><b>${CP.code}</b><small>Get ${CP.percent}% off on your order</small></div><button data-cp="on">Apply</button>`;
   try { localStorage.setItem("cart2", JSON.stringify(cart)); } catch(e) {}
 }
+$("coupon").addEventListener("click", e => {
+  const a = e.target.dataset.cp; if(!a) return;
+  couponOn = a === "on";
+  try { localStorage.setItem("coupon2", couponOn ? "1" : "0"); } catch(err) {}
+  renderCart();
+});
 function change(k, d){
   cart[k] = Math.min(20, (cart[k]||0) + d);
   if(cart[k] <= 0) delete cart[k];
@@ -478,8 +533,9 @@ $("order").onclick = () => {
   const name = $("name").value.trim(), phone = $("phone").value.trim(), addr = $("addr").value.trim();
   if(!name || !phone || !addr){ alert("Please fill in your name, phone and address."); return; }
   let total = 0;
-  const lines = keys.map(k => { const p = find(pid(k)); total += p.price*cart[k]; return `• ${cart[k]} x ${label(k)} - ${money(p.price*cart[k])}`; });
-  const msg = `New order from ${CONFIG.storeName}\n\n${lines.join("\n")}\n\nTotal: ${money(total)}\n\nName: ${name}\nPhone: ${phone}\nAddress: ${addr}`;
+  const lines = keys.map(k => { const p = find(pid(k)); total += sale(p)*cart[k]; return `• ${cart[k]} x ${label(k)} - ${money(sale(p)*cart[k])}`; });
+  const disc = couponOn ? Math.round(total * CP.percent / 100) : 0;
+  const msg = `New order from ${CONFIG.storeName}\n\n${lines.join("\n")}${disc ? "\n\nCoupon " + CP.code + " (" + CP.percent + "% off): -" + money(disc) : ""}\n\nTotal: ${money(total - disc)}\n\nName: ${name}\nPhone: ${phone}\nAddress: ${addr}`;
   window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
 };
 
