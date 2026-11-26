@@ -59,8 +59,8 @@ header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px 
 @media(min-width:850px){.det{grid-template-columns:1.1fr 1fr;gap:48px;align-items:start}.gal{position:sticky;top:84px}}
 .main{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;aspect-ratio:1}
 .main img{width:100%;height:100%;object-fit:cover;display:block}
-.thumbs{display:flex;gap:10px;margin-top:12px}
-.thumbs button{flex:1;max-width:96px;aspect-ratio:1;padding:0;border-radius:12px;overflow:hidden;border:2px solid var(--line);background:var(--card)}
+.thumbs{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.thumbs button{flex:0 0 calc((100% - 30px)/4);max-width:96px;aspect-ratio:1;padding:0;border-radius:12px;overflow:hidden;border:2px solid var(--line);background:var(--card)}
 .thumbs button.on{border-color:var(--brand)}
 .thumbs img{width:100%;height:100%;object-fit:cover;display:block}
 .tag{display:inline-block;background:#e3f4f1;color:var(--brand);font-weight:700;font-size:.85rem;padding:3px 12px;border-radius:999px}
@@ -68,6 +68,10 @@ header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px 
 .price{font-size:2rem;font-weight:700}
 .price small{font-size:.95rem;color:var(--mute);font-weight:400}
 .lead{color:var(--mute);max-width:52ch;margin-top:6px}
+.colrow{margin:18px 0 0}.colrow>span{display:block;margin-bottom:8px}
+#colors{display:flex;gap:8px;flex-wrap:wrap}
+#colors button{padding:9px 18px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--ink);font-weight:500}
+#colors button.on{border-color:var(--brand);background:#e3f4f1;color:var(--brand);font-weight:700}
 .qtyrow{display:flex;align-items:center;gap:14px;margin:20px 0 12px}
 .qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:12px;background:var(--card)}
 .qty button{width:42px;height:44px;background:none;color:var(--ink);font-size:1.3rem}
@@ -150,6 +154,7 @@ body.open #drawer{transform:none}body.open #shade{display:block}
       <h1 id="dname"></h1>
       <div class="price" id="dprice"></div>
       <p class="lead" id="ddesc"></p>
+      <div class="colrow hide" id="colrow"><span>Colour: <b id="colname"></b></span><div id="colors"></div></div>
       <div class="qtyrow">
         <span>Quantity</span>
         <div class="qty"><button id="qm" aria-label="Decrease quantity">&minus;</button><span id="q">1</span><button id="qp" aria-label="Increase quantity">+</button></div>
@@ -196,7 +201,8 @@ const CONFIG = {
    To add a category: copy one line. "id" = small letters/numbers/hyphens.
    "image" = a photo from your repository. */
 const CATEGORIES = [
-  {id:"necklace-sets", name:"Necklace Sets", image:"choker-set-1.jpg"}
+  {id:"necklace-sets", name:"Necklace Sets", image:"choker-set-1.jpg"},
+  {id:"earrings", name:"Earrings", image:"jhumka-set-1.jpg"}
 ];
 
 /* ============ 3. YOUR PRODUCTS ============
@@ -261,6 +267,47 @@ const PRODUCTS = [
       ["Net Quantity", "1 set (necklace + earrings)"],
       ["Country of Origin", "India"]
     ]
+  },
+  {
+    id: "jhumka-pack-6",
+    name: "Gold Plated Fancy Jhumka Earrings for Women - Set of 6 (Pack of 6)",
+    category: "earrings",
+    price: 169,
+    short: "Oxidised gold jhumka combo, 6 pairs",
+    desc: "Combo of 6 pairs of traditional oxidised gold jhumka earrings in different designs. Fancy ethnic earrings for daily wear and special occasions.",
+    images: ["jhumka-set-1.jpg", "jhumka-set-2.jpg", "jhumka-set-3.jpg", "jhumka-set-4.jpg"],
+    specs: [
+      ["Name", "Gold Plated Fancy Jhumka Earrings for Women - Set of 6 (Pack of 6)"],
+      ["Base Metal", "Alloy"],
+      ["Plating", "Oxidised Gold"],
+      ["Stone Type", "No Stone"],
+      ["Sizing", "Non-Adjustable"],
+      ["Type", "Jhumkas"],
+      ["Net Quantity", "1 pack (6 pairs)"],
+      ["Country of Origin", "India"]
+    ]
+  },
+  {
+    id: "temple-jhumka",
+    name: "Antique Gold-Plated Traditional Jhumka Earrings with Ruby & Emerald Stones - Temple Jewellery for Women & Brides",
+    category: "earrings",
+    price: 220,
+    short: "Temple jhumka, 3 colours",
+    desc: "Antique gold plated temple jhumka earrings with floral and peacock-inspired designs on a classic dome-shaped jhumka. Adorned with emerald-style stones, ruby-red accents and sparkling white zirconia, with delicate bead drops at the base. Matte gold finish for a royal antique look. Pair with sarees, lehengas and anarkali suits. Available in 3 colours.",
+    colors: [{name:"Pink", img:0}, {name:"Green", img:1}, {name:"White", img:2}],
+    images: ["jhumka-temple-1.jpg","jhumka-temple-2.jpg","jhumka-temple-3.jpg","jhumka-temple-4.jpg","jhumka-temple-5.jpg","jhumka-temple-6.jpg","jhumka-temple-7.jpg"],
+    specs: [
+      ["Name", "Antique Gold-Plated Traditional Jhumka Earrings with Ruby & Emerald Stones - Temple Jewellery for Women & Brides"],
+      ["Base Metal", "Brass"],
+      ["Plating", "Gold Plated"],
+      ["Stone Type", "Pearls, ruby & emerald style stones, zirconia"],
+      ["Sizing", "Non-Adjustable"],
+      ["Type", "Jhumkas"],
+      ["Size", "Length 40 mm, width 15 mm"],
+      ["Colours", "Pink, Green, White"],
+      ["Net Quantity", "1 pair"],
+      ["Country of Origin", "India"]
+    ]
   }
 ];
 /* ========================================== */
@@ -270,7 +317,7 @@ const money = n => CONFIG.currency + Math.round(n).toLocaleString("en-IN");
 const find = id => PRODUCTS.find(p => p.id === id);
 const catOf = id => CATEGORIES.find(c => c.id === id) || {id, name:id};
 const inCat = id => PRODUCTS.filter(p => p.category === id);
-let cart = {}, qty = 1, current = null;
+let cart = {}, qty = 1, current = null, colour = null;
 try { cart = JSON.parse(localStorage.getItem("cart2")) || {}; } catch(e) {}
 
 document.title = CONFIG.storeName + " | South Indian Jewellery";
@@ -316,9 +363,20 @@ function openProduct(p){
   $("ddesc").textContent = p.desc;
   $("specs").innerHTML = p.specs.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("");
   $("thumbs").innerHTML = p.images.map((s,i) => `<button data-i="${i}" aria-label="Photo ${i+1}"><img src="${s}" alt=""></button>`).join("");
-  show(0);
+  colour = p.colors ? 0 : null;
+  $("colrow").classList.toggle("hide", !p.colors);
+  if(p.colors) drawColors();
+  show(p.colors ? p.colors[0].img : 0);
   $("detail").classList.remove("hide");
 }
+function drawColors(){
+  $("colname").textContent = current.colors[colour].name;
+  $("colors").innerHTML = current.colors.map((c,i) => `<button data-c="${i}" class="${i===colour?"on":""}">${c.name}</button>`).join("");
+}
+$("colors").addEventListener("click", e => {
+  const b = e.target.closest("button"); if(!b) return;
+  colour = +b.dataset.c; drawColors(); show(current.colors[colour].img);
+});
 $("thumbs").addEventListener("click", e => { const b = e.target.closest("button"); if(b) show(+b.dataset.i); });
 $("back").onclick = () => { location.hash = current ? "c-" + current.category : ""; };
 $("qm").onclick = () => { qty = Math.max(1, qty-1); $("q").textContent = qty; };
@@ -342,22 +400,26 @@ function route(){
 window.addEventListener("hashchange", route);
 
 /* ----- cart ----- */
+const pid = k => k.split("::")[0], pvar = k => k.split("::")[1] || "";
+const label = k => find(pid(k)).name + (pvar(k) ? " (" + pvar(k) + ")" : "");
+const thumb = k => { const p = find(pid(k)); const c = p.colors && p.colors.find(c => c.name === pvar(k)); return p.images[c ? c.img : 0]; };
+const keyFor = () => current.id + (colour !== null ? "::" + current.colors[colour].name : "");
 function renderCart(){
-  const ids = Object.keys(cart).filter(id => find(id));
+  const keys = Object.keys(cart).filter(k => find(pid(k)));
   let total = 0, count = 0;
-  $("items").innerHTML = ids.length ? ids.map(id => {
-    const p = find(id), n = cart[id]; total += p.price*n; count += n;
-    return `<div class="row"><img src="${p.images[0]}" alt=""><div class="t"><b>${p.name}</b>${money(p.price)}
-      <div><div class="qty"><button data-dec="${id}" aria-label="Remove one">&minus;</button><span>${n}</span><button data-inc="${id}" aria-label="Add one">+</button></div></div></div>
+  $("items").innerHTML = keys.length ? keys.map(k => {
+    const p = find(pid(k)), n = cart[k]; total += p.price*n; count += n;
+    return `<div class="row"><img src="${thumb(k)}" alt=""><div class="t"><b>${label(k)}</b>${money(p.price)}
+      <div><div class="qty"><button data-dec="${k}" aria-label="Remove one">&minus;</button><span>${n}</span><button data-inc="${k}" aria-label="Add one">+</button></div></div></div>
       <b>${money(p.price*n)}</b></div>`;
   }).join("") : `<p class="empty">Your cart is empty. Open a product and tap Add to cart.</p>`;
   $("total").textContent = money(total);
   $("count").textContent = count;
   try { localStorage.setItem("cart2", JSON.stringify(cart)); } catch(e) {}
 }
-function change(id, d){
-  cart[id] = Math.min(20, (cart[id]||0) + d);
-  if(cart[id] <= 0) delete cart[id];
+function change(k, d){
+  cart[k] = Math.min(20, (cart[k]||0) + d);
+  if(cart[k] <= 0) delete cart[k];
   renderCart();
 }
 $("items").addEventListener("click", e => {
@@ -369,16 +431,16 @@ const closeCart = () => document.body.classList.remove("open");
 $("openCart").onclick = openCart;
 $("closeCart").onclick = $("shade").onclick = closeCart;
 
-$("addBtn").onclick = () => { change(current.id, qty); $("addBtn").textContent = "Added to cart"; setTimeout(()=>$("addBtn").textContent="Add to cart", 1000); };
-$("buyBtn").onclick = () => { if(!cart[current.id]) change(current.id, qty); openCart(); };
+$("addBtn").onclick = () => { change(keyFor(), qty); $("addBtn").textContent = "Added to cart"; setTimeout(()=>$("addBtn").textContent="Add to cart", 1000); };
+$("buyBtn").onclick = () => { const k = keyFor(); if(!cart[k]) change(k, qty); openCart(); };
 
 $("order").onclick = () => {
-  const ids = Object.keys(cart).filter(id => find(id));
-  if(!ids.length){ alert("Your cart is empty."); return; }
+  const keys = Object.keys(cart).filter(k => find(pid(k)));
+  if(!keys.length){ alert("Your cart is empty."); return; }
   const name = $("name").value.trim(), phone = $("phone").value.trim(), addr = $("addr").value.trim();
   if(!name || !phone || !addr){ alert("Please fill in your name, phone and address."); return; }
   let total = 0;
-  const lines = ids.map(id => { const p = find(id); total += p.price*cart[id]; return `• ${cart[id]} x ${p.name} - ${money(p.price*cart[id])}`; });
+  const lines = keys.map(k => { const p = find(pid(k)); total += p.price*cart[k]; return `• ${cart[k]} x ${label(k)} - ${money(p.price*cart[k])}`; });
   const msg = `New order from ${CONFIG.storeName}\n\n${lines.join("\n")}\n\nTotal: ${money(total)}\n\nName: ${name}\nPhone: ${phone}\nAddress: ${addr}`;
   window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
 };
